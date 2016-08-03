@@ -1,7 +1,13 @@
 class HomeController {
-  constructor() { }
+  constructor($http, ListingModel) {
+    this.$http = $http;
+    console.log(ListingModel.getGreeting());
+  }
 
-  $onInit() { }
+  $onInit() {
+  }
 }
+
+HomeController.$inject = ['$http', 'ListingModel'];
 
 export default HomeController;

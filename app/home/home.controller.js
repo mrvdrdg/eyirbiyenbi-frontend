@@ -1,10 +1,14 @@
 class HomeController {
   constructor($http, ListingModel) {
     this.$http = $http;
-    console.log(ListingModel.getGreeting());
+    this.ListingModel = ListingModel;
   }
 
   $onInit() {
+    this.ListingModel.query()
+      .then((response) => {
+        this.listings = response.data;
+      });
   }
 }
 

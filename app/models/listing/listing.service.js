@@ -1,13 +1,18 @@
 class ListingModel {
-  constructor($http) {
+  constructor($http, API_URL) {
     this.$http = $http;
+    this.API_URL = API_URL;
   }
 
-  getGreeting() {
-    return 'hi i\'m a listing';
+  get(id) {
+    return this.$http.get(this.API_URL + '/listings/' + id);
+  }
+
+  query() {
+    return this.$http.get(this.API_URL + '/listings');
   }
 }
 
-ListingModel.$inject = ['$http'];
+ListingModel.$inject = ['$http', 'API_URL'];
 
 export default ListingModel;

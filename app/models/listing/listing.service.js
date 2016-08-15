@@ -1,15 +1,17 @@
 class ListingModel {
-  constructor($http, API_URL) {
+  constructor($http ,API_URL) {
     this.$http = $http;
     this.API_URL = API_URL;
   }
 
-  get(id) {
-    return this.$http.get(this.API_URL + '/listings/' + id);
-  }
-
   query() {
-    return this.$http.get(this.API_URL + '/listings');
+    return this.$http.get(this.API_URL + '/listings' );
+  }
+  getUserOfListing (listing) {
+    return this.$http.get(this.API_URL + '/users/' + listing.user_id)
+  }
+  getUsers (){
+    return this.$http.get(this.API_URL + '/users')
   }
 }
 

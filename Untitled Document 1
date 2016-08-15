@@ -1,0 +1,59 @@
+home.html
+<!--h1>Eyırbiyenbi Home</h1-->
+<div class="video-container">
+   <video poster="" autoplay loop playsinline muted>
+     <source src="/US_60_ANTHEM.mp4" type="">
+   </video>
+     <button class="btn btn-primary"> on video button </button>
+</div>
+
+<div class="listings-container">
+
+
+  <div class="listing-item"
+       ng-repeat="listing in $ctrl.listings">
+
+
+    <h2>{{ listing.title }}</h2>
+
+      <div class="listing-item-capacity">
+      Bed Capacity:
+
+
+   <!--{{listing.bed_capacity}}-->
+   <span  ng-repeat="bedNumber in $ctrl.getNumberOfBedCapacity(listing) track by $index"><img class="bed-icons" width="20" height="20" ng-src="../app/bed.png"></span>
+
+    <br>
+
+      Created: {{ listing.created_at | date }}
+      </div>
+
+    <img ng-src="{{ listing.image_url }}">
+
+
+  </div>
+
+</div>
+
+home.controller
+class HomeController {
+  constructor($http, ListingModel) {
+    this.$http = $http;
+    this.ListingModel = ListingModel;
+  }
+
+  $onInit() {
+    this.ListingModel.query()
+      .then((response) => {
+        this.listings = response.data;
+      });
+  }
+  getNumberOfBedCapacity(listing){
+   return new Array(listing.bed_capacity);
+ }
+}
+
+HomeController.$inject = ['$http', 'ListingModel'];
+
+export default HomeController;
+

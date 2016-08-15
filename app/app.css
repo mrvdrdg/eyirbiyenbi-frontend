@@ -14,7 +14,23 @@ body {
   width: 204px;
 }
 
+video{
+ background-size: cover;
+ /*position: absolute;*/
+ z-index: -100;
+ width: 100%;
+
+.video-container{
+ position: relative;
+ width: 100%;
+
+}
+
 .listings-container {
+  margin: 60%;
+
+}
+
 }
 
 .listing-item {

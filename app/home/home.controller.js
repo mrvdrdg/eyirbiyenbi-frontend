@@ -1,15 +1,34 @@
 class HomeController {
-  constructor($http, ListingModel) {
+  constructor($http, ListingModel, API_URL, $state) {
     this.$http = $http;
+    this.API_URL = API_URL;
     this.ListingModel = ListingModel;
+    this.$state = $state;
+    //console.log(ListingModel.getGreeting());
   }
 
   $onInit() {
-    this.ListingModel.query()
-      .then((response) => {
-        this.listings = response.data;
-      });
+    console.log(this.API_URL);
+
+    this.ListingModel.query().then((response) => {
+      //console.log(response.data);
+      this.listings= response.data;
+
+    })
+    this.ListingModel.getUsers().then((response)=>{
+      console.log(response.data)
+      this.users=response.data;
+    })
   }
+
+  printPhoneNumberOfListing(listing){
+    console.log(this.users.filter((user) => listing.user_id == user.id))
+    return this.users.filter((user) => listing.user_id == user.id)
+
+  }
+  getNumberOfBedCapacity(listing){
+   return new Array(listing.bed_capacity);
+ }
 }
 
 HomeController.$inject = ['$http', 'ListingModel'];
